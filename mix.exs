@@ -46,7 +46,21 @@ defmodule Pantry.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:pow, "~> 1.0.22"},
+      {:bamboo, "~> 2.0.0"},      
+      # {:bamboo_ses, "~> 0.2.0"},      
+      # {:bamboo_mailjet, "~> 0.1.0"},            
+      # {:bcrypt_elixir, "~> 2.0"},      
+
+      {:phoenix_slime, "~> 0.13.1"},      
+      # {:pow_assent, "~> 0.4.10"},
+      # # Optional, but repcommended for SSL validation with :httpc adapter
+      # {:certifi, "~> 2.4"},
+      # {:ssl_verify_fun, "~> 1.1"},
+      {:set_locale, "~> 0.2.1"},
+      {:csv, "~> 2.4"},
+      {:number, "~> 1.0.1"}             
     ]
   end
 
