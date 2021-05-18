@@ -1,0 +1,21 @@
+h1 Show Record
+
+ul
+  li
+    strong Details:&nbsp;
+    = @record.details
+  li
+    strong Brands:&nbsp;
+    = @record.brands
+  li
+    strong Bottle points:&nbsp;
+    = @record.bottle_points
+  li
+    strong Compost points:&nbsp;
+    = @record.compost_points
+  li
+    strong Plastic points:&nbsp;
+    = @record.plastic_points
+
+span= link "Edit", to: Routes.record_path(@conn, :edit, @record)
+span= link "Back", to: Routes.record_path(@conn, :index)

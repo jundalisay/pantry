@@ -1,0 +1,39 @@
+h1 Show Hub
+
+ul
+  li
+    strong Name:&nbsp;
+    = @hub.name
+  li
+    strong Address:&nbsp;
+    = @hub.address
+  li
+    strong Kind:&nbsp;
+    = @hub.kind
+  li
+    strong Avatar:&nbsp;
+    = @hub.avatar
+  li
+    strong Email:&nbsp;
+    = @hub.email
+  li
+    strong Facebook:&nbsp;
+    = @hub.facebook
+  li
+    strong Latitude:&nbsp;
+    = @hub.latitude
+  li
+    strong Longitude:&nbsp;
+    = @hub.longitude
+  li
+    strong Mobile:&nbsp;
+    = @hub.mobile
+  li
+    strong Landline:&nbsp;
+    = @hub.landline
+  li
+    strong Slogan:&nbsp;
+    = @hub.slogan
+
+span= link "Edit", to: Routes.hub_path(@conn, :edit, @hub)
+span= link "Back", to: Routes.hub_path(@conn, :index)

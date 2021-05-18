@@ -1,0 +1,43 @@
+.px-3.py-4
+  .columns
+    .column.is-3
+      nav.panel.is-info
+        .panel-heading    
+          | Records
+          .is-pulled-right
+            = link to: Routes.record_path(@conn, :new) do
+              .fas.fa-plus.fa-lg.has-text-white
+        .p-2 style="background: white"       
+          /= form_for @conn, Routes.record_path(@conn, :index), [method: :get], fn f ->
+            .field.has-addons
+              .control.has-icons-right.is-expanded            
+                = search_input f, :q, placeholder: "Find..", class: "input" 
+              .control
+                = submit gettext("Search"), class: "button is-primary"
+
+
+        /.is-flex.is-flex-wrap-wrap.is-justify-content-center style="background: white"
+          = for cat <- @cats do
+            /a.is-active cat
+            .p-2
+              a.button.is-small.is-light href="?=123" = cat.name
+
+              
+    .column.is-9
+      = render_shared "carousel.html", conn: @conn
+
+      = for record <- @records do
+        .pb-3
+          .card.p-3
+            .columns.is-mobile
+              .column.is-3
+                figure.image
+                  /img src="#{record.photo}"
+              .column.is-9          
+                .subtitle = record.brands
+                .carddesc = record.details
+    
+      /= record.brands
+      /= record.bottle_points
+      /= record.compost_points
+      /= record.plastic_points

@@ -1,0 +1,82 @@
+.p-4.container
+  .card
+    .p-4
+      .title Register
+
+      = form_for @changeset, @action, [as: :user], fn f ->
+        = if @changeset.action do
+          .notification.is-warning
+            p Oops, something went wrong! Please check the errors below.
+
+        .field
+          .heading            
+            = label f, Pow.Ecto.Schema.user_id_field(@changeset)
+            | &nbsp;                  
+            = error_tag f, Pow.Ecto.Schema.user_id_field(@changeset)
+          .control.has-icons-left.is-expanded
+            = text_input f, Pow.Ecto.Schema.user_id_field(@changeset), class: "input"
+            span.icon.is-left
+              .fas.fa-envelope
+        
+        .field
+          .heading
+            = label f, :name  
+            | &nbsp;                  
+            = error_tag f, Pow.Ecto.Schema.user_id_field(@changeset)                  
+          .control.has-icons-left.is-expanded
+            = text_input f, :name, class: "input"
+            span.icon.is-left
+              .fas.fa-id-card    
+
+        .field
+          .heading
+            = label f, :password  
+            | &nbsp;                  
+            = error_tag f, :password
+          .control.has-icons-left.is-expanded
+            = password_input f, :password, class: "input"
+            span.icon.is-left
+              .fas.fa-key
+
+        .field
+          .heading
+            = label f, :password_confirmation
+            | &nbsp;                  
+            = error_tag f, :password_confirmation
+          .control.has-icons-left.is-expanded
+            = password_input f, :password_confirmation, class: "input"
+            span.icon.is-left
+              .fas.fa-key
+        
+        .field
+          .heading
+            = label f, gettext "Avatar URL"
+            | &nbsp;                  
+            = error_tag f, :avatar               
+          .control.has-icons-left.is-expanded
+            = text_input f, :avatar, class: "input", value: "/images/blankavatar.png"
+            span.icon.is-left
+              .fas.fa-photo
+
+        .field
+          .heading
+            = label f, gettext "Country"
+            | &nbsp;                  
+            = error_tag f, :country_id           
+          .control.has-icons-left.is-expanded
+            / = select f, :country_id, @countries, class: "select"          
+            /= text_input f, :country, class: "input", value: "/images/blankavatar.png"
+            span.icon.is-left
+              /.fas.fa-photo              
+
+        .pb-5
+          = submit class: "button is-primary" do
+            .fas.fa-sign-in-alt
+            | &nbsp;        
+            = gettext "Register"
+
+      .py-2
+        = link to: Routes.pow_session_path(@conn, :new) do
+          .fas.fa-pen-alt
+          | &nbsp; 
+          = gettext "Sign in"

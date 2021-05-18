@@ -1,0 +1,5 @@
+h1 Edit Hub
+
+= render "form.html", Map.put(assigns, :action, Routes.hub_path(@conn, :update, @hub))
+
+span= link "Back", to: Routes.hub_path(@conn, :index)

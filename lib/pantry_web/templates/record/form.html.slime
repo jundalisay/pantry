@@ -1,0 +1,21 @@
+= form_for @changeset, @action, fn f ->
+  = if @changeset.action do
+    .alert.alert-danger
+      p Oops, something went wrong! Please check the errors below.
+  = label f, :details, class: "control-label"
+  = text_input f, :details, class: "form-control"
+  = error_tag f, :details
+  = label f, :brands, class: "control-label"
+  = text_input f, :brands, class: "form-control"
+  = error_tag f, :brands
+  = label f, :bottle_points, class: "control-label"
+  = number_input f, :bottle_points, class: "form-control"
+  = error_tag f, :bottle_points
+  = label f, :compost_points, class: "control-label"
+  = number_input f, :compost_points, class: "form-control"
+  = error_tag f, :compost_points
+  = label f, :plastic_points, class: "control-label"
+  = number_input f, :plastic_points, class: "form-control"
+  = error_tag f, :plastic_points
+  div
+    = submit "Submit"

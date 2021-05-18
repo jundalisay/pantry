@@ -39,6 +39,9 @@ defmodule PantryWeb do
 
       # Include shared imports and aliases for views
       unquote(view_helpers())
+      def render_shared(template, assigns \\ []) do
+        render(PantryWeb.LayoutView, template, assigns)
+      end           
     end
   end
 
@@ -56,6 +59,9 @@ defmodule PantryWeb do
       use Phoenix.LiveComponent
 
       unquote(view_helpers())
+      def render_shared(template, assigns \\ []) do
+        render(PantryWeb.LayoutView, template, assigns)
+      end         
     end
   end
 
@@ -83,6 +89,7 @@ defmodule PantryWeb do
 
       # Import LiveView helpers (live_render, live_component, live_patch, etc)
       import Phoenix.LiveView.Helpers
+      import PantryWeb.LiveHelpers
 
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View

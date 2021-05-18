@@ -1,0 +1,39 @@
+= form_for @changeset, @action, fn f ->
+  = if @changeset.action do
+    .alert.alert-danger
+      p Oops, something went wrong! Please check the errors below.
+  = label f, :name, class: "control-label"
+  = text_input f, :name, class: "form-control"
+  = error_tag f, :name
+  = label f, :address, class: "control-label"
+  = text_input f, :address, class: "form-control"
+  = error_tag f, :address
+  = label f, :kind, class: "control-label"
+  = text_input f, :kind, class: "form-control"
+  = error_tag f, :kind
+  = label f, :avatar, class: "control-label"
+  = text_input f, :avatar, class: "form-control"
+  = error_tag f, :avatar
+  = label f, :email, class: "control-label"
+  = text_input f, :email, class: "form-control"
+  = error_tag f, :email
+  = label f, :facebook, class: "control-label"
+  = text_input f, :facebook, class: "form-control"
+  = error_tag f, :facebook
+  = label f, :latitude, class: "control-label"
+  = number_input f, :latitude, step: "any", class: "form-control"
+  = error_tag f, :latitude
+  = label f, :longitude, class: "control-label"
+  = number_input f, :longitude, step: "any", class: "form-control"
+  = error_tag f, :longitude
+  = label f, :mobile, class: "control-label"
+  = text_input f, :mobile, class: "form-control"
+  = error_tag f, :mobile
+  = label f, :landline, class: "control-label"
+  = text_input f, :landline, class: "form-control"
+  = error_tag f, :landline
+  = label f, :slogan, class: "control-label"
+  = text_input f, :slogan, class: "form-control"
+  = error_tag f, :slogan
+  div
+    = submit "Submit"

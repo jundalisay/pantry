@@ -1,0 +1,75 @@
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, PantryWeb.PostLive.FormComponent,
+    id: @post.id || :new,
+    title: @page_title,
+    action: @live_action,
+    post: @post,
+    current_user: @current_user,
+    return_to: Routes.post_index_path(@socket, :index) %>
+<% end %>
+
+
+
+<div class="p-5 columns is-mobile">
+  <div class="column is-hidden-mobile is-3-desktop">
+    <%# is-12-mobile %>
+    <div class="panel is-info">
+      <div class="panel-heading">
+        <%= gettext "Tutorials" %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="column is-12-mobile is-6-desktop">
+    
+    <%= live_patch to: Routes.post_index_path(@socket, :new), class: "button is-primary is-fullwidth is-small" do gettext("New Post") end %>      
+
+    <%= for post <- @posts do %>
+      <div class="card p-4" id="post-<%= post.id %>">
+        <div class="columns is-mobile is-multiline">
+          <div class="column is-full-mobile is-2-desktop has-text-centered">
+            <div class="is-flex is-flex-wrap-wrap is-justify-content-center">
+              <figure class="image">
+                <img src="<%= post.userpic %>" class="is-rounded" style="width: 50px">
+              </figure>
+              <span class="h py-2"><%= post.username %></h>              
+            </div>
+          </div>
+          <div class="column is-full-mobile is-10-desktop">
+            <%= post.content %>
+          </div>
+        </div>                        
+      </div>
+      <br>
+    <% end %>
+  </div>
+
+
+  <div class="column is-hidden-mobile is-3-desktop">
+    <div class="panel is-info">
+      <div class="panel-heading">
+        <%= gettext "Activity" %>        
+      </div>
+      <%= for r <- @records do %>
+        <div class="p-2">
+          <div class="columns" style="background: white">
+            <div class="column is-4">
+              <figure class="image">
+                <%= link to: Routes.record_path(OneWeb.Endpoint, :show, r) do %>
+                  <img src="<%= r.user_id %>" class="rounded">
+                <% end %>
+              </figure>
+            </div>
+            <div class="column is-8">
+              <%= link to: Routes.record_path(OneWeb.Endpoint, :show, r) do %>              
+                <small><%= r.user_id %></small>
+              <% end %>
+            </div>                    
+          </div>
+        </div>
+      <% end %>        
+    </div>
+
+  </div>    
+</div>

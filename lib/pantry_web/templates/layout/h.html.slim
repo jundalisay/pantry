@@ -1,0 +1,65 @@
+nav.navbar style="background-color: azure" role="navigation" aria-label="main navigation"
+  .navbar-brand
+    a.navbar-item href="/"
+      img src="/images/logo-pantry.png"
+    .navbar-burger role="button" aria-label="menu" aria-expanded="false" data-target="navbar"
+      span aria-hidden="true"
+      span aria-hidden="true"
+      span aria-hidden="true"
+
+  #navbar.navbar-menu
+
+    .navbar-end
+      .navbar-item.has-dropdown.is-hoverable x-data="{ state: false }"
+        a.navbar-link.green @click=" state = !state "
+          .menu-label
+            = gettext "Pantries"
+          /.fas.fa-newspaper
+        .navbar-dropdown.green x-show="state"
+          = link to: Routes.hub_path(@conn, :index), class: "navbar-item" do
+            .menu-label
+              /.fas.fa-newspaper
+              = gettext "Pantries"
+
+      = if @current_user do
+        .navbar-item.has-dropdown.is-hoverable x-data="{ state: false }"
+          a.navbar-link.green @click=" state = !state "
+            .menu-label
+              /.has-text-white
+              = gettext "Hi"
+              | &nbsp; #{@current_user.name}!
+          .navbar-dropdown.is-right.green x-show="state"
+            = link to: Routes.record_path(@conn, :index), class: "navbar-item menu-label" do
+              = gettext "Record"
+
+            = link to: Routes.user_path(@conn, :show, @current_user), class: "navbar-item menu-label" do
+              = gettext "View Profile", class: "menu-label"
+            .dropdown-divider            
+            = link to: Routes.pow_session_path(@conn, :delete), method: :delete, class: "navbar-item menu-label has-text-danger" do
+              .fas.fa-sign-out-alt
+              = gettext "Sign out"
+
+
+javascript:
+  document.addEventListener('DOMContentLoaded', () => {
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+  });            

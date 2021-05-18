@@ -1,0 +1,97 @@
+.px-3.py-4
+  .columns
+    .column.is-3
+      nav.panel.is-info
+        .panel-heading    
+          | Hubs
+          .is-pulled-right
+            = link to: Routes.hub_path(@conn, :new) do
+              .fas.fa-plus.fa-lg.has-text-white
+        .p-2 style="background: white"       
+          /= form_for @conn, Routes.hub_path(@conn, :index), [method: :get], fn f ->
+            .field.has-addons
+              .control.has-icons-right.is-expanded            
+                = search_input f, :q, placeholder: "Find..", class: "input" 
+              .control
+                = submit gettext("Search"), class: "button is-primary"
+
+
+        /.is-flex.is-flex-wrap-wrap.is-justify-content-center style="background: white"
+          = for cat <- @cats do
+            /a.is-active cat
+            .p-2
+              a.button.is-small.is-light href="?=123" = cat.name
+
+              
+    .column.is-9
+      = render_shared "carousel.html", conn: @conn
+
+
+
+      = for hub <- @hubs do
+        .pb-3
+          .card.p-3
+            .columns.is-mobile
+              .column.is-3
+                figure.image
+                  img src="#{hub.avatar}"
+              .column.is-9          
+                .subtitle = link "#{hub.name}", to: Routes.hub_path(@conn, :show, hub)
+                /.carddesc = hub.short_description
+                / time datetime="2016-1-1"
+                  | 11:09 PM - 1 Jan 2016  
+
+javascript:
+  var slideIndex = 1;
+  showSlides(slideIndex);
+
+  // Next/previous controls
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  // Thumbnail image controls
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+  }
+  // const carousels = bulmaCarousel.attach('.carousel', options);
+  // const carousels = bulmaCarousel.attach('.carousel');
+  // // To access to bulmaCarousel instance of an element
+  // const element = document.querySelector('#my-element');
+  // if (element && element.bulmaCarousel) {
+  //   // bulmaCarousel instance is available as element.bulmaCarousel
+  // }
+
+  // bulmaCarousel.attach('#carousel-demo', {
+  //   slidesToScroll: 1,
+  //   slidesToShow: 3
+  // });
+
+  // fetch('/images/blankavatar.png') 
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     data.forEaach(function(image, i) {
+  //       document.querySelector("#slide-" + (i+1)).innerHTML = `
+  //         <img src="${image.urls.regular}" alt="">
+  //         <p class="author-info">
+  //           <a href="${image.links.html}?utm_source=slider-thing&utm_medium=referral&utm_campaign=api-credit">Photo by ${image.user.name}</a> on <a href="https://unsplash.com/">Unsplash</a>
+  //         </p>
+  //       `;
+  //     });
+  //   });

@@ -1,0 +1,63 @@
+.p-4.container
+  .card
+    .p-4
+      h1.title.is-3 Edit profile
+
+      = form_for @changeset, @action, [as: :user], fn f ->
+        = if @changeset.action do
+          .notification.is-warning
+            p = gettext "Something went wrong! Please check the errors below"
+
+        .field
+          .heading            
+            = label f, gettext("name")
+            | &nbsp;                  
+            = error_tag f, :name
+          .control.is-expanded.has-icons-left
+            = text_input f, :name, class: "input"
+            span.icon.is-left
+              .fas.fa-id-card
+
+        .field
+          .heading            
+            = label f, Pow.Ecto.Schema.user_id_field(@changeset)
+            | &nbsp;                  
+            = error_tag f, Pow.Ecto.Schema.user_id_field(@changeset)
+          .control.is-expanded.has-icons-left
+            = text_input f, Pow.Ecto.Schema.user_id_field(@changeset), class: "input"
+            span.icon.is-left
+              .fas.fa-id-card
+
+        .field
+          .heading            
+            = label f, :current_password
+            | &nbsp;                  
+            = error_tag f, :current_password
+          .control.is-expanded.has-icons-left
+            = password_input f, :current_password, class: "input"
+            span.icon.is-left
+              .fas.fa-key
+
+        .field
+          .heading            
+            = label f, :password
+            | &nbsp;                  
+            = error_tag f, :password
+          .control.is-expanded.has-icons-left
+            = password_input f, :password, class: "input"
+            span.icon.is-left
+              .fas.fa-key
+
+        .field
+          .heading            
+            = label f, :password_confirmation
+            | &nbsp;                  
+            = error_tag f, :password_confirmation
+          .control.is-expanded.has-icons-left
+            = password_input f, :password_confirmation, class: "input"
+            span.icon.is-left
+              .fas.fa-key
+
+        = submit class: "is-primary button" do
+          .fas.fa-pen-alt
+          | &nbsp; "Update"
