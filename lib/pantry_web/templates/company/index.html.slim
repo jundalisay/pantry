@@ -3,9 +3,9 @@
     .column.is-3
       nav.panel.is-info
         .panel-heading    
-          | Hubs
+          | Companies
           .is-pulled-right
-            = link to: Routes.hub_path(@conn, :new) do
+            = link to: Routes.company_path(@conn, :new) do
               .fas.fa-plus.fa-lg.has-text-white
         .p-2 style="background: white"       
           /= form_for @conn, Routes.hub_path(@conn, :index), [method: :get], fn f ->
@@ -14,8 +14,6 @@
                 = search_input f, :q, placeholder: "Find..", class: "input" 
               .control
                 = submit gettext("Search"), class: "button is-primary"
-
-
         /.is-flex.is-flex-wrap-wrap.is-justify-content-center style="background: white"
           = for cat <- @cats do
             /a.is-active cat
@@ -24,24 +22,18 @@
 
               
     .column.is-9
-      = render_shared "carousel.html", conn: @conn
-
-
-
-      = for hub <- @hubs do
+      = for company <- @companies do
         .pb-3
           .card.p-3
             .columns.is-mobile
               .column.is-3
                 figure.image
-                  img src="#{hub.avatar}"
+                  img src="#{company.avatar}"
               .column.is-9          
-                .subtitle = link "#{hub.name}", to: Routes.hub_path(@conn, :show, hub)
-                /.carddesc = hub.short_description
-                / time datetime="2016-1-1"
-                  | 11:09 PM - 1 Jan 2016  
+                .subtitle = link "#{company.name}", to: Routes.company_path(@conn, :show, company)
 
-    = for company <- @companies do
+
+
       tr
         td= company.name
         td= company.landline
@@ -51,4 +43,4 @@
         td class="text-right"
           = link "Show", to: Routes.company_path(@conn, :show, company)
           = link "Edit", to: Routes.company_path(@conn, :edit, company)
-          = link "Delete", to: Routes.company_path(@conn, :delete, company), method: :delete, data: [confirm: "Are you sure?"]
+
