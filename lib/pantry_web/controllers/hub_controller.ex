@@ -1,8 +1,8 @@
 defmodule PantryWeb.HubController do
   use PantryWeb, :controller
 
-  alias Pantry.Orgs
-  alias Pantry.Orgs.Hub
+  alias Pantry.{Orgs, Orgs.Hub}
+  
 
   def index(conn, _params) do
     hubs = Orgs.list_hubs()

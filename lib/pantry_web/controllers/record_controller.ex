@@ -1,8 +1,8 @@
 defmodule PantryWeb.RecordController do
   use PantryWeb, :controller
 
-  alias Pantry.Transactions
-  alias Pantry.Transactions.Record
+  alias Pantry.{Transactions, Transactions.Record}
+
 
   def index(conn, _params) do
     records = Transactions.list_records()
@@ -18,18 +18,19 @@ defmodule PantryWeb.RecordController do
     case Transactions.create_record(record_params) do
       {:ok, record} ->
         conn
-        |> put_flash(:info, "Record created successfully.")
-        |> redirect(to: Routes.record_path(conn, :show, record))
+        # |> put_flash(:info, "Record created successfully.")
+        |> redirect(to: Routes.record_path(conn, :edit, record))        
+        # |> redirect(to: Routes.record_path(conn, :show, record))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    record = Transactions.get_record!(id)
-    render(conn, "show.html", record: record)
-  end
+  # def show(conn, %{"id" => id}) do
+  #   record = Transactions.get_record!(id)
+  #   render(conn, "show.html", record: record)
+  # end
 
   def edit(conn, %{"id" => id}) do
     record = Transactions.get_record!(id)
@@ -44,7 +45,8 @@ defmodule PantryWeb.RecordController do
       {:ok, record} ->
         conn
         |> put_flash(:info, "Record updated successfully.")
-        |> redirect(to: Routes.record_path(conn, :show, record))
+        |> redirect(to: Routes.record_path(conn, :index))                
+        # |> redirect(to: Routes.record_path(conn, :show, record))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", record: record, changeset: changeset)

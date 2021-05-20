@@ -1,0 +1,37 @@
+.px-3.py-4
+  .columns
+    .column.is-3
+      nav.panel.is-info
+        .panel-heading    
+          | Users
+          /.is-pulled-right
+            = link to: Routes.needed_food_path(@conn, :new) do
+              .fas.fa-plus.fa-lg.has-text-white
+        .panel-block
+          .field.has-addons        
+            .control.has-icons-right.is-expanded
+              input.input
+              /= search_input f, :query, placeholder: "Find..", class: "input"
+            .control
+              button.button.fas.fa-search
+              /= submit "Search", class: "button is-primary"
+
+        .is-flex.is-flex-wrap-wrap
+          a.button.is-small.is-light href="#" Male
+          a.button.is-small.is-light href="#" Female
+          /= link "Download CSV", to: csv_path(@conn, :users)      
+
+                        
+    .column.is-9
+      = for user <- @users do
+        .py-1
+          .card.p-3
+            .columns
+              .column.is-2
+                .image
+                  = link to: Routes.user_path(@conn, :show, user) do
+                    img.is-rounded src="#{user.avatar}" class="is-rounded"
+              .column.is-10            
+                .subtitle = link "#{user.name}", to: Routes.user_path(@conn, :show, user)
+                /= getcountry(user.country_id)
+                

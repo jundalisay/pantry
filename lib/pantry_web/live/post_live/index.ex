@@ -2,10 +2,8 @@ defmodule PantryWeb.PostLive.Index do
   use PantryWeb, :live_view
 
   alias PantryWeb.LiveCreds
-  alias Pantry.Feed
-  alias Pantry.Feed.Post
-  alias Pantry.Transactions
-  alias Pantry.Transactions.Record
+  alias Pantry.{Feed, Feed.Post, Transactions, Transactions.Record}
+  
 
   def get_postuser(id) do
     u = Users.get_user!(id)

@@ -1,8 +1,13 @@
 defmodule PantryWeb.UserController do
   use PantryWeb, :controller
 
-  alias Pantry.Users
-  alias Pantry.Users.User
+  alias Pantry.{Users, Users.User, Transactions, Transactions.Record}  
+
+
+  def dash(conn, _params) do
+    user = Pow.Plug.current_user(conn)    
+    render(conn, "dash.html", user: user)
+  end
 
   def index(conn, _params) do
     users = Users.list_users()
@@ -28,7 +33,8 @@ defmodule PantryWeb.UserController do
 
   def show(conn, %{"id" => id}) do
     user = Users.get_user!(id)
-    render(conn, "show.html", user: user)
+    changeset = Transactions.change_record(%Record{})
+    render(conn, "show.html", user: user, changeset: changeset)
   end
 
   def edit(conn, %{"id" => id}) do

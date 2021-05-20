@@ -14,6 +14,7 @@ defmodule Pantry.Repo.Migrations.CreateHubs do
       add :mobile, :string
       add :landline, :string
       add :slogan, :string
+      add :status, :string
       add :user_id, references(:users, on_delete: :nothing)
 
       timestamps()

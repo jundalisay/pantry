@@ -14,6 +14,7 @@ defmodule Pantry.Orgs.Hub do
     field :mobile, :string
     field :name, :string
     field :slogan, :string
+    field :status, :string    
     field :user_id, :id
 
     timestamps()
@@ -22,7 +23,7 @@ defmodule Pantry.Orgs.Hub do
   @doc false
   def changeset(hub, attrs) do
     hub
-    |> cast(attrs, [:name, :address, :kind, :avatar, :email, :facebook, :latitude, :longitude, :mobile, :landline, :slogan])
+    |> cast(attrs, [:name, :address, :kind, :avatar, :email, :facebook, :latitude, :longitude, :mobile, :landline, :slogan, :status])
     |> validate_required([:name])
   end
 end

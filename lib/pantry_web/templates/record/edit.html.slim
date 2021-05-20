@@ -1,0 +1,83 @@
+.p-4
+  = if @record.kind == "deposit" do
+    b deposit
+  - else
+    b claim
+
+    
+  = form_for @changeset, Routes.record_path(@conn, :update, @record), fn f -> 
+    /= if @changeset.action do
+      .alert.alert-danger
+        p Oops, something went wrong! Please check the errors below.
+
+    .columns
+      .column.is-3
+        .card.p-4      
+          img src="#{getowner(@record.user_id).avatar}"
+
+          .field
+            .heading            
+              = label f, :hub
+              | &nbsp;                  
+              = error_tag f, :hub
+            .control.is-expanded.has-icons-left
+              /= text_input f, :hub, class: "input"
+              = select f, :category_id, 1..4, class: "select"
+              span.icon.is-left
+                .fas.fa-id-card
+
+      .column.is-9    
+        .card.p-4
+          .field
+            .heading            
+              = label f, :details
+              | &nbsp;                  
+              = error_tag f, :details
+            .control.is-expanded.has-icons-left
+              = text_input f, :details, class: "input"
+              span.icon.is-left
+                .fas.fa-id-card
+
+          .field
+            .heading            
+              = label f, :bottle_points
+              | &nbsp;                  
+              = error_tag f, :bottle_points
+            .control.is-expanded.has-icons-left
+              = text_input f, :bottle_points, class: "input"
+              span.icon.is-left
+                .fas.fa-id-card
+
+          .field
+            .heading            
+              = label f, :compost_points
+              | &nbsp;                  
+              = error_tag f, :compost_points
+            .control.is-expanded.has-icons-left
+              = text_input f, :compost_points, class: "input"
+              span.icon.is-left
+                .fas.fa-id-card
+
+          .field
+            .heading            
+              = label f, :plastic_points
+              | &nbsp;                  
+              = error_tag f, :plastic_points
+            .control.is-expanded.has-icons-left
+              = text_input f, :plastic_points, class: "input"
+              span.icon.is-left
+                .fas.fa-id-card
+
+          hr
+          
+          .field
+            .heading            
+              = label f, :brands
+              | &nbsp;                  
+              = error_tag f, :brands
+            .control.is-expanded.has-icons-left
+              = text_input f, :brands, class: "input"
+              span.icon.is-left
+                .fas.fa-id-card
+
+          = submit "Submit", class: "button is-primary is-fullwidth"

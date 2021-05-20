@@ -1,0 +1,34 @@
+.px-3.py-4
+  .columns
+    .column.is-3
+      .card
+        .p-3.image
+          img.is-rounded src="#{@hub.avatar}"
+        .card-content
+          .buttons.are-small 
+            = link "Edit", to: Routes.hub_path(@conn, :edit, @hub), class: "button is-info is-fullwidth"
+            /= link "Back", to: Routes.hub_path(@conn, :index), class: "button is-info is-fullwidth"
+            = link "Delete", to: Routes.hub_path(@conn, :delete, @hub), method: :delete, data: [confirm: "Are you sure?"], class: "button is-danger is-fullwidth"
+
+    .column.is-9
+      .card
+        .card-content
+          .subtitle = @hub.name
+          .py-4
+            p = @hub.slogan
+          .columns.is-multiline
+            .column.is-3
+              .menu-label.field-label 
+                = gettext "Address"
+            .column.is-9
+              = @hub.address
+            .column.is-3
+              .menu-label.field-label 
+                = gettext "Email"
+            .column.is-9
+              = @hub.email
+            .column.is-3
+              .menu-label.field-label 
+                = gettext "Mobile"
+            .column.is-9
+              = @hub.mobile

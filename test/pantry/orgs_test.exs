@@ -81,4 +81,71 @@ defmodule Pantry.OrgsTest do
       assert %Ecto.Changeset{} = Orgs.change_hub(hub)
     end
   end
+
+  describe "companies" do
+    alias Pantry.Orgs.Company
+
+    @valid_attrs %{address: "some address", email: "some email", landline: "some landline", mobile: "some mobile", name: "some name"}
+    @update_attrs %{address: "some updated address", email: "some updated email", landline: "some updated landline", mobile: "some updated mobile", name: "some updated name"}
+    @invalid_attrs %{address: nil, email: nil, landline: nil, mobile: nil, name: nil}
+
+    def company_fixture(attrs \\ %{}) do
+      {:ok, company} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Orgs.create_company()
+
+      company
+    end
+
+    test "list_companies/0 returns all companies" do
+      company = company_fixture()
+      assert Orgs.list_companies() == [company]
+    end
+
+    test "get_company!/1 returns the company with given id" do
+      company = company_fixture()
+      assert Orgs.get_company!(company.id) == company
+    end
+
+    test "create_company/1 with valid data creates a company" do
+      assert {:ok, %Company{} = company} = Orgs.create_company(@valid_attrs)
+      assert company.address == "some address"
+      assert company.email == "some email"
+      assert company.landline == "some landline"
+      assert company.mobile == "some mobile"
+      assert company.name == "some name"
+    end
+
+    test "create_company/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Orgs.create_company(@invalid_attrs)
+    end
+
+    test "update_company/2 with valid data updates the company" do
+      company = company_fixture()
+      assert {:ok, %Company{} = company} = Orgs.update_company(company, @update_attrs)
+      assert company.address == "some updated address"
+      assert company.email == "some updated email"
+      assert company.landline == "some updated landline"
+      assert company.mobile == "some updated mobile"
+      assert company.name == "some updated name"
+    end
+
+    test "update_company/2 with invalid data returns error changeset" do
+      company = company_fixture()
+      assert {:error, %Ecto.Changeset{}} = Orgs.update_company(company, @invalid_attrs)
+      assert company == Orgs.get_company!(company.id)
+    end
+
+    test "delete_company/1 deletes the company" do
+      company = company_fixture()
+      assert {:ok, %Company{}} = Orgs.delete_company(company)
+      assert_raise Ecto.NoResultsError, fn -> Orgs.get_company!(company.id) end
+    end
+
+    test "change_company/1 returns a company changeset" do
+      company = company_fixture()
+      assert %Ecto.Changeset{} = Orgs.change_company(company)
+    end
+  end
 end

@@ -60,6 +60,17 @@
 
         .field
           .heading
+            = label f, gettext "PIN"
+            | &nbsp;                  
+            = error_tag f, :pin           
+          .control.has-icons-left.is-expanded
+            = text_input f, :pin, class: "input"
+            /= text_input f, :country, class: "input", value: "/images/blankavatar.png"
+            span.icon.is-left
+            /.fas.fa-photo  
+
+        / .field
+          .heading
             = label f, gettext "Country"
             | &nbsp;                  
             = error_tag f, :country_id           

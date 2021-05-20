@@ -8,6 +8,7 @@ defmodule Pantry.Users.User do
   schema "users" do
     pow_user_fields()
     field :name, :string
+    field :pin, :integer    
     field :avatar, :string
     field :role, :string, null: false, default: "ordinary"
     field :gender, :string
@@ -25,8 +26,9 @@ defmodule Pantry.Users.User do
 
   def changeset(user_or_changeset, attrs) do
     user_or_changeset
-    |> cast(attrs, [:name, :avatar, :gender, :mobile, :role])    
+    |> cast(attrs, [:name, :avatar, :gender, :mobile, :role, :pin])    
     |> pow_changeset(attrs)
     # |> pow_extension_changeset(attrs)
+    |> validate_required([:name, :avatar, :pin])    
   end  
 end

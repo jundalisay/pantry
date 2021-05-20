@@ -56,13 +56,13 @@
           <div class="columns" style="background: white">
             <div class="column is-4">
               <figure class="image">
-                <%= link to: Routes.record_path(OneWeb.Endpoint, :show, r) do %>
+                <%= link to: Routes.record_path(PantryWeb.Endpoint, :show, r) do %>
                   <img src="<%= r.user_id %>" class="rounded">
                 <% end %>
               </figure>
             </div>
             <div class="column is-8">
-              <%= link to: Routes.record_path(OneWeb.Endpoint, :show, r) do %>              
+              <%= link to: Routes.record_path(PantryWeb.Endpoint, :show, r) do %>              
                 <small><%= r.user_id %></small>
               <% end %>
             </div>                    

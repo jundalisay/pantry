@@ -31,12 +31,16 @@
           .card.p-3
             .columns.is-mobile
               .column.is-3
-                figure.image
-                  /img src="#{record.photo}"
-              .column.is-9          
+                .image
+                  img.is-rounded src="#{getowner(record.user_id).avatar}" style="height: 100px; width: 100px;"
+              .column.is-6          
                 .subtitle = record.brands
                 .carddesc = record.details
-    
+              .column.is-3
+                .image.is-centered
+                  img.is-rounded src="#{getowner(record.recorder_id).avatar}" style="height: 100px; width: 100px;"
+
+
       /= record.brands
       /= record.bottle_points
       /= record.compost_points
