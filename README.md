@@ -2,11 +2,16 @@
 
 Pantry is a decentralized Waste to Wealth system as an implementation of the circular economy. It combines the community pantry system with recycling and environmental advocacy in order to reduce waste while providing food and employment to people.   
 
-This web app is for the admin portal.
+This web app is for the admin portal. https://github.com/jundalisay/pantry
 
-The mobile app is for the end users.
+The mobile app is for the end users. https://github.com/jundalisay/pantrymob
 
 https://sora.one/pantry
+
+Team Pantry Partners:
+- Juan Dalisay Jr, Las Pinas
+- Vladimir Medina, Pasig
+- Eljin Aguilar, Makati
 
 ![alt text](/images/logo-pantry.jpg)
 
